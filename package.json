@@ -1,6 +1,6 @@
 {
   "name": "pi-latest-output-pager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A less-like pager for pi assistant output, with follow-up questions asked without leaving the page",
   "license": "MIT",
   "author": "Larry Song <1631094+songlining@users.noreply.github.com> (https://github.com/songlining)",

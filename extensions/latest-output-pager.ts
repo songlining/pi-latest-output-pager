@@ -177,6 +177,8 @@ function copyTextToClipboard(text: string): { ok: true; command: string } | { ok
 			input: text,
 			encoding: "utf8",
 			stdio: ["pipe", "ignore", "pipe"],
+			// A wedged clipboard helper must not freeze the TUI event loop.
+			timeout: 5000,
 		});
 
 		if (!result.error && result.status === 0) return { ok: true, command: candidate.command };
@@ -624,7 +626,6 @@ export class LatestOutputPager implements Component {
 	private lastQuery: string | undefined;
 	private searchStatus: string | undefined;
 	private lastInnerWidth: number | undefined;
-	private cachedWidth?: number;
 	private cachedContentWidth?: number;
 	private cachedMarkdownLines?: string[];
 	private helpStatus: string | undefined;
@@ -954,7 +955,6 @@ export class LatestOutputPager implements Component {
 	}
 
 	invalidate(): void {
-		this.cachedWidth = undefined;
 		this.cachedContentWidth = undefined;
 		this.cachedMarkdownLines = undefined;
 	}
@@ -987,7 +987,7 @@ export class LatestOutputPager implements Component {
 	}
 
 	private getMarkdownLines(contentWidth: number): string[] {
-		if (this.cachedMarkdownLines && this.cachedContentWidth === contentWidth && this.cachedWidth === contentWidth) {
+		if (this.cachedMarkdownLines && this.cachedContentWidth === contentWidth) {
 			return this.cachedMarkdownLines;
 		}
 
@@ -995,7 +995,6 @@ export class LatestOutputPager implements Component {
 		const lines = markdown.render(contentWidth);
 		this.cachedMarkdownLines = lines;
 		this.cachedContentWidth = contentWidth;
-		this.cachedWidth = contentWidth;
 		return lines;
 	}
 }

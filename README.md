@@ -22,7 +22,7 @@ you are reading.
 pi install git:github.com/songlining/pi-latest-output-pager
 ```
 
-Pin a release with `@v0.1.0` on the end, or install into a single project with `-l`.
+Pin a release with `@v0.1.1` on the end, or install into a single project with `-l`.
 
 ## Commands
 
@@ -60,7 +60,7 @@ rebind it to `alt+super+up` if you prefer.
 | `j` / `k` | One line down / up |
 | `g`, `gg`, `1G` | Top · `G` bottom · `40G` line 40 |
 | `3j`, `2ctrl+d`, `3Space` | Count prefixes work on `j k Space b ctrl+d ctrl+u` |
-| `/` `/` `?` `n` `N` | Search forward / backward, next / previous match |
+| `/` `?` `n` `N` | Search forward / backward, next / previous match |
 | `a` | Ask a follow-up question without leaving the pager |
 | `c` | Copy the current page to the clipboard |
 | `q`, `Esc`, `ctrl+c` | Quit |
@@ -95,11 +95,12 @@ Notes:
 
 ## Auto-open
 
-After a reply that is taller than the terminal, the pager opens by itself. It never opens
-over an overlay you already have on screen: if you are reading something when a turn
-finishes, the new answer is added to that pager as the newest page instead. Turn it off
-with `/latest-output-auto off`; the status line shows `latest output pager: auto` while it
-is on.
+After a reply that is taller than the terminal, the pager opens by itself. It never replaces
+an overlay you already have on screen: if a **pager** is open when a turn finishes, the new
+answer is added to it as the newest page instead (press `←`). If a history **picker** is
+the open overlay, the answer is only recorded for the next `/latest-output` — the picker
+stays as it was. Turn it off with `/latest-output-auto off`; the status line shows
+`latest output pager: auto` while it is on.
 
 If [pi-codex-goal](https://www.npmjs.com/package/pi-codex-goal) has an active goal, the
 auto-open is skipped so a goal continuation is never left waiting on a modal.
