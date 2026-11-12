@@ -1,0 +1,43 @@
+{
+  "name": "pi-latest-output-pager",
+  "version": "0.1.0",
+  "description": "A less-like pager for pi assistant output, with follow-up questions asked without leaving the page",
+  "license": "MIT",
+  "author": "Larry Song <1631094+songlining@users.noreply.github.com> (https://github.com/songlining)",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "extension",
+    "pager",
+    "history"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/songlining/pi-latest-output-pager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/songlining/pi-latest-output-pager/issues"
+  },
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^1.5.2",
+    "@earendil-works/pi-tui": "^1.5.2",
+    "@types/bun": "^1.4.4",
+    "typescript": "^5.9.3"
+  },
+  "pi": {
+    "extensions": ["./extensions"]
+  }
+}
